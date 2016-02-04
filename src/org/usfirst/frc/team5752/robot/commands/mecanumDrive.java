@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5752.robot.commands;
 
 import org.usfirst.frc.team5752.robot.OI;
+import org.usfirst.frc.team5752.robot.Robot;
 import org.usfirst.frc.team5752.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -13,6 +14,7 @@ public class mecanumDrive extends Command {
     public mecanumDrive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time

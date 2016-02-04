@@ -1,18 +1,20 @@
-
 package org.usfirst.frc.team5752.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 import org.usfirst.frc.team5752.robot.Robot;
+import org.usfirst.frc.team5752.robot.RobotMap;
+import org.usfirst.frc.team5752.robot.subsystems.intakeSystem;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ExampleCommand extends Command {
+public class intakeStart extends Command {
 
-    public ExampleCommand() {
+    public intakeStart() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.exampleSubsystem);
+        // eg. requires(chassis);
+    	requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
@@ -21,6 +23,8 @@ public class ExampleCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
+    	intakeSystem.drive(RobotMap.INTAKE_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -35,5 +39,8 @@ public class ExampleCommand extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	
+    	//this method is used to stop the command if using toggle
+    	intakeSystem.stop();
     }
 }

@@ -1,7 +1,8 @@
 package org.usfirst.frc.team5752.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
-import org.usfirst.frc.team5752.robot.commands.ExampleCommand;
+
+import org.usfirst.frc.team5752.robot.commands.intakeStart;
 import org.usfirst.frc.team5752.robot.commands.mecanumDrive;
 
 /**
@@ -41,7 +42,11 @@ public class OI {
 	public OI() {
 		
 		//example
-		Xbox.getButtonX().whenReleased(new ExampleCommand());
+		//Xbox.getButtonX().whenReleased(new ExampleCommand());
+		
+		//Xbox.getButtonLeft().whenPressed(new intakeStart());
+		
+		Xbox.getButtonRight().toggleWhenPressed(new intakeStart());
 	}
 }
 
