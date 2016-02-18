@@ -22,8 +22,15 @@ public class RobotMap {
 	public static final int MOTOR_BACK_RIGHT = 3;
 	public static final int INTAKE_MOTOR = 4;
 	
+	public static final int SHOOTER_MOTOR = 5;
+	
+	public static boolean INTAKE_ON = false;
+	
 	// -1.0 to 1.0
-	public static final double INTAKE_SPEED = .4;
+	
+	public static double DRIVE_SPEED = 1;
+	
+	public static final double DEADBAND = .2;
 	
 	public static final int XBOX_PORT_DRIVER = 0;
 }

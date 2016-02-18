@@ -1,8 +1,12 @@
 package org.usfirst.frc.team5752.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-import org.usfirst.frc.team5752.robot.commands.intakeStart;
+import org.usfirst.frc.team5752.robot.commands.intakeFast;
+import org.usfirst.frc.team5752.robot.commands.intakeSlowToggle;
+import org.usfirst.frc.team5752.robot.commands.intakeSpit;
 import org.usfirst.frc.team5752.robot.commands.mecanumDrive;
 
 /**
@@ -37,16 +41,36 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 	
-	public static XBoxController Xbox = new XBoxController(RobotMap.XBOX_PORT_DRIVER);
+	//public static XBoxController Xbox = new XBoxController(RobotMap.XBOX_PORT_DRIVER);
+	
+	public static Joystick stick = new Joystick(1);
+	
+	Button button1 = new JoystickButton(stick, 1),
+			button2 = new JoystickButton(stick, 2),
+			button3 = new JoystickButton(stick, 3);
+	
+	//JOYSTICK 4 = limitswitch bottom
 	
 	public OI() {
+		
+		//BUTTON 3 = REVERSE
+		
+		button1.whileHeld(new intakeFast());
+		button3.whileHeld(new intakeSpit());
+		button2.toggleWhenActive(new intakeSlowToggle());
+		
+		
+		
+		//button3.whenPressed(new intakeSlowToggle());
+		
+		
 		
 		//example
 		//Xbox.getButtonX().whenReleased(new ExampleCommand());
 		
 		//Xbox.getButtonLeft().whenPressed(new intakeStart());
 		
-		Xbox.getButtonRight().toggleWhenPressed(new intakeStart());
+		//Xbox.getButtonRight().toggleWhenPressed(new intakeStart());
 	}
 }
 

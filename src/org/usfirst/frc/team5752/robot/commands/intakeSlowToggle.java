@@ -1,6 +1,5 @@
 package org.usfirst.frc.team5752.robot.commands;
 
-import org.usfirst.frc.team5752.robot.Robot;
 import org.usfirst.frc.team5752.robot.RobotMap;
 import org.usfirst.frc.team5752.robot.subsystems.intakeSystem;
 
@@ -9,12 +8,18 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class intakeStart extends Command {
+public class intakeSlowToggle extends Command {
 
-    public intakeStart() {
+    public intakeSlowToggle() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.intake);
+    	/*RobotMap.INTAKE_ON = true;
+    	
+    	if (RobotMap.INTAKE_ON) {
+    		RobotMap.INTAKE_ON = false;
+    	} else {
+    		RobotMap.INTAKE_ON = true;
+    	}*/
     }
 
     // Called just before this Command runs the first time
@@ -23,8 +28,7 @@ public class intakeStart extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	intakeSystem.drive(RobotMap.INTAKE_SPEED);
+    	intakeSystem.move(.3);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -39,8 +43,6 @@ public class intakeStart extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	
-    	//this method is used to stop the command if using toggle
     	intakeSystem.stop();
     }
 }
