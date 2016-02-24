@@ -16,7 +16,7 @@ public class AutonomousCommand extends CommandGroup {
     	requires(Robot.driveTrain);
     	requires(Robot.shooter);
     	
-    	//addSequential(new driveAuto());
+    	addSequential(new driveAuto());
     	
     }
 

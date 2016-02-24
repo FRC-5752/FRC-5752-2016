@@ -9,11 +9,16 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class driveAuto extends Command {
-
+	
+	private double time;
+	private double runs;
+	private boolean done = false;
+	
     public driveAuto() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
+    	//time = tempTime;
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +27,13 @@ public class driveAuto extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//DriveTrain.drive(.5, 0, o, GYRO_ANGLE);
+    	DriveTrain.drive(0, -.2, 0, 0);
+    	//isFinished(true);
+    	//if (runs >= time) {
+    		//done = true;
+    	//}
+    	//runs++;
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

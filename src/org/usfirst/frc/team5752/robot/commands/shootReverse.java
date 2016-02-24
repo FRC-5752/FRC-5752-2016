@@ -1,19 +1,19 @@
 package org.usfirst.frc.team5752.robot.commands;
 
 import org.usfirst.frc.team5752.robot.Robot;
-import org.usfirst.frc.team5752.robot.subsystems.intakeSystem;
+import org.usfirst.frc.team5752.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class intakeSpit extends Command {
+public class shootReverse extends Command {
 
-    public intakeSpit() {
+    public shootReverse() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.intakeSystem);
+    	requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +22,7 @@ public class intakeSpit extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	intakeSystem.move(-1);
+    	Shooter.spin(-.5);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -37,6 +37,6 @@ public class intakeSpit extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	intakeSystem.stop();
+    	Shooter.stop();
     }
 }

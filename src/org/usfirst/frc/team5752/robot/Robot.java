@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team5752.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Command;
@@ -15,6 +16,7 @@ import org.usfirst.frc.team5752.robot.subsystems.intakeSystem;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.vision.USBCamera;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,23 +32,38 @@ public class Robot extends IterativeRobot {
 	public static final Shooter shooter = new Shooter() ;
 	public static OI oi;
 	
+	public static CameraServer server;
+	
     private Command autonomousCommand;
     
-    SendableChooser chooser;
-
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
-    public void robotInit() {
+    
+    SmartDashboard dash = new SmartDashboard();
+	public void robotInit() {
 		oi = new OI();
+		//SmartDashboard.putData(intakeSystem);
 		
-		autonomousCommand = new AutonomousCommand();
+		//server = CameraServer.getInstance();
+		//server.setQuality(50);
+		//server.startAutomaticCapture("cam0");
+		
+		//autonomousCommand = new AutonomousCommand();
+		
+		//SmartDashboard.putData(driveTrain);
+		
 		
 		//chooser = new SendableChooser();
         //chooser.addDefault("Default Auto", new ExampleCommand());
         //chooser.addObject("My Auto", new MyAutoCommand());
-        //SmartDashboard.putData("Auto mode", chooser);
+        //SmartDashboard.putData("Volts", driveTrain);
+		SmartDashboard.putString("DB/String 0", "HELLO DAN MILEY");
+		
+		CameraServer server = CameraServer.getInstance();
+		server.startAutomaticCapture("cam0");
+		
     }
 	
 	/**
@@ -102,6 +119,8 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+
+        
     }
 
     /**
@@ -109,6 +128,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        //SmartDashboard.putString("DB/String 0", "HELLO ANDREW");
+      
     }
     
     /**

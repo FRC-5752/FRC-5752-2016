@@ -8,6 +8,9 @@ import org.usfirst.frc.team5752.robot.commands.intakeFast;
 import org.usfirst.frc.team5752.robot.commands.intakeSlowToggle;
 import org.usfirst.frc.team5752.robot.commands.intakeSpit;
 import org.usfirst.frc.team5752.robot.commands.mecanumDrive;
+import org.usfirst.frc.team5752.robot.commands.shoot;
+import org.usfirst.frc.team5752.robot.commands.shootReverse;
+import org.usfirst.frc.team5752.robot.commands.slowShoot;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -43,11 +46,14 @@ public class OI {
 	
 	//public static XBoxController Xbox = new XBoxController(RobotMap.XBOX_PORT_DRIVER);
 	
-	public static Joystick stick = new Joystick(1);
+	public static Joystick stick = new Joystick(0);
 	
 	Button button1 = new JoystickButton(stick, 1),
 			button2 = new JoystickButton(stick, 2),
-			button3 = new JoystickButton(stick, 3);
+			button3 = new JoystickButton(stick, 3),
+			button4 = new JoystickButton(stick, 4),
+			button5 = new JoystickButton(stick, 5),
+			button6 = new JoystickButton(stick, 6);
 	
 	//JOYSTICK 4 = limitswitch bottom
 	
@@ -56,8 +62,19 @@ public class OI {
 		//BUTTON 3 = REVERSE
 		
 		button1.whileHeld(new intakeFast());
-		button3.whileHeld(new intakeSpit());
+		
+		//button1.whileHeld(new shoot());
+		
 		button2.toggleWhenActive(new intakeSlowToggle());
+		
+		button3.whileHeld(new intakeSpit());
+		
+		button4.whileHeld(new shoot());
+		
+		button5.whileHeld(new slowShoot());
+		
+		button6.whileHeld(new shootReverse());
+
 		
 		
 		
