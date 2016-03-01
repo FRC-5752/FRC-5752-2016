@@ -26,6 +26,8 @@ import edu.wpi.first.wpilibj.vision.USBCamera;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	
+	//  <> w/ <3 by Bradley Spillert
 
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static final intakeSystem intakeSystem = new intakeSystem();
