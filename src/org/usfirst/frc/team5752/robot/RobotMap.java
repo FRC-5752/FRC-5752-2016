@@ -33,7 +33,7 @@ public class RobotMap {
 	
 	public static final double DEADBAND = .2;
 	
-	public static final double XY_DEADBAND = .15;
+	public static final double XY_DEADBAND = .2;
 	
 	public static final int XBOX_PORT_DRIVER = 0;
 }

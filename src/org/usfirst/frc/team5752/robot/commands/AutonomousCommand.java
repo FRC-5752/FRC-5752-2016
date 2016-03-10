@@ -4,6 +4,7 @@ import org.usfirst.frc.team5752.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -15,8 +16,13 @@ public class AutonomousCommand extends CommandGroup {
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
     	requires(Robot.shooter);
+    	//SmartDashboard.putString("DB/String 6", "AUTO COMMAND RUNNING");
+    	// -.5Y makes it go forward
+    	addSequential(new driveAuto(0,-.65, 0, 100));
+    	// -.5X makes it go left
+    	//addSequential(new driveAuto(-.8, 0, 0, 100));
     	
-    	addSequential(new driveAuto());
+    	// 128in IN 100 itterations
     	
     }
 

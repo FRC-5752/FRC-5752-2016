@@ -2,6 +2,7 @@ package org.usfirst.frc.team5752.robot.commands;
 
 import org.usfirst.frc.team5752.robot.OI;
 import org.usfirst.frc.team5752.robot.Robot;
+import org.usfirst.frc.team5752.robot.RobotMap;
 import org.usfirst.frc.team5752.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -45,9 +46,12 @@ public class mecanumDrive extends Command {
 
 		}*/
 
+		double X_DIRECTION = OI.stick.getRawAxis(0);
+		double Y_DIRECTION = OI.stick.getRawAxis(1);
+		double ROTATION = OI.stick.getRawAxis(2);
 		
-
-		DriveTrain.drive(OI.stick.getRawAxis(0), OI.stick.getRawAxis(1), OI.stick.getRawAxis(2), 0);
+		
+		DriveTrain.drive(X_DIRECTION, Y_DIRECTION, ROTATION, 0);
 
 		// ZERO ROTATION
 		// DriveTrain.drive(OI.Xbox.getLeftXAxis(), OI.Xbox.getLeftYAxis(), 0,

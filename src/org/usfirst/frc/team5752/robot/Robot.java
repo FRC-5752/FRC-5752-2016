@@ -52,7 +52,7 @@ public class Robot extends IterativeRobot {
 		//server.setQuality(50);
 		//server.startAutomaticCapture("cam0");
 		
-		//autonomousCommand = new AutonomousCommand();
+		autonomousCommand = new AutonomousCommand();
 		
 		//SmartDashboard.putData(driveTrain);
 		
