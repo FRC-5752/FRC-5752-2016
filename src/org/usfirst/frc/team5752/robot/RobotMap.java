@@ -27,6 +27,8 @@ public class RobotMap {
 	
 	public static boolean INTAKE_ON = false;
 	
+	public static boolean SPIN_SLOW = true;
+	
 	// -1.0 to 1.0
 	
 	public static double DRIVE_SPEED = 1;

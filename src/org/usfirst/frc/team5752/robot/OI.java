@@ -11,6 +11,7 @@ import org.usfirst.frc.team5752.robot.commands.mecanumDrive;
 import org.usfirst.frc.team5752.robot.commands.shoot;
 import org.usfirst.frc.team5752.robot.commands.shootReverse;
 import org.usfirst.frc.team5752.robot.commands.slowShoot;
+import org.usfirst.frc.team5752.robot.commands.slowToggle;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -53,7 +54,9 @@ public class OI {
 			button3 = new JoystickButton(stick, 3),
 			button4 = new JoystickButton(stick, 4),
 			button5 = new JoystickButton(stick, 5),
-			button6 = new JoystickButton(stick, 6);
+			button6 = new JoystickButton(stick, 6),
+			button11 = new JoystickButton(stick,11),
+			button12 = new JoystickButton(stick, 12);
 	
 	//JOYSTICK 4 = limitswitch bottom
 	
@@ -74,9 +77,10 @@ public class OI {
 		button5.whileHeld(new slowShoot());
 		
 		button6.whileHeld(new shootReverse());
-
 		
+		button11.toggleWhenPressed(new slowToggle());
 		
+		button12.toggleWhenPressed(new slowToggle());
 		
 		//button3.whenPressed(new intakeSlowToggle());
 		

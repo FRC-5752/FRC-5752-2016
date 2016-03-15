@@ -1,22 +1,17 @@
 package org.usfirst.frc.team5752.robot.commands;
 
-import org.usfirst.frc.team5752.robot.OI;
-import org.usfirst.frc.team5752.robot.Robot;
 import org.usfirst.frc.team5752.robot.RobotMap;
-import org.usfirst.frc.team5752.robot.subsystems.intakeSystem;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class intakeFast extends Command {
+public class slowToggle extends Command {
 
-    public intakeFast() {
+    public slowToggle() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.intakeSystem);
     }
 
     // Called just before this Command runs the first time
@@ -24,18 +19,8 @@ public class intakeFast extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-	protected void execute() {
-    	/*if (RobotMap.INTAKE_ON && OI.stick.getRawButton(3)) {
-    		intakeSystem.move(.5);
-    	} else if (RobotMap.INTAKE_ON){
-    		intakeSystem.move(.3);
-    	}*/
-    	//if (!OI.stick.getRawButton(2));
-    	//	intakeSystem.move(.3);
-    	
-    	intakeSystem.move(1);
-    	
-    	
+    protected void execute() {
+    	RobotMap.SPIN_SLOW = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -45,11 +30,12 @@ public class intakeFast extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	RobotMap.SPIN_SLOW = false;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	intakeSystem.stop();
+    	RobotMap.SPIN_SLOW = false;
     }
 }

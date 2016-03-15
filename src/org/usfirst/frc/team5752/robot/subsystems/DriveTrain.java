@@ -43,6 +43,10 @@ public class DriveTrain extends Subsystem {
 			ROTATION += RobotMap.DEADBAND;
 			ROTATION *= number1; // * 1.24 to be on the safe side
 		}
+		
+		if (RobotMap.SPIN_SLOW) {
+			ROTATION *= .5;
+		}
 
 		if (Math.abs(X_DIRECTION) < RobotMap.XY_DEADBAND) {
 			X_DIRECTION = 0;
@@ -68,6 +72,7 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putString("DB/String 2", "X:" + Double.toString(X_DIRECTION));
 		SmartDashboard.putString("DB/String 3", "Y:" + Double.toString(Y_DIRECTION));
 		SmartDashboard.putString("DB/String 4", "ROTATE:" + Double.toString(ROTATION));
+		SmartDashboard.putString("DB/String 5", "SPINSLOW: " + Boolean.toString(RobotMap.SPIN_SLOW));
 		myDrive.mecanumDrive_Cartesian(X_DIRECTION, Y_DIRECTION, ROTATION, GYRO_ANGLE);
 
 	}

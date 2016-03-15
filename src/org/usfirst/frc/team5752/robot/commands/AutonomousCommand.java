@@ -2,6 +2,7 @@ package org.usfirst.frc.team5752.robot.commands;
 
 import org.usfirst.frc.team5752.robot.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,12 +16,37 @@ public class AutonomousCommand extends CommandGroup {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
-    	requires(Robot.shooter);
-    	//SmartDashboard.putString("DB/String 6", "AUTO COMMAND RUNNING");
+    	requires(Robot.intakeSystem);
+    	
     	// -.5Y makes it go forward
-    	addSequential(new driveAuto(0,-.65, 0, 100));
+    	
+    	//FORWARDS
+    	
+    	/*
+    	addSequential(new driveAuto(0,.65, 0, 125));
+    	*/
+    	
+    	
+    	//ROBOT FACING BACKWARDS GOING LEFT RELATIVE TO LOWBAR
+    	//addSequential(new driveAuto(0, 0, 0, 40));
+    	//addSequential(new driveAuto(.65, 0, .3, 85));
+    	addSequential(new driveAuto(0,.65, 0, 170));
+    	
     	// -.5X makes it go left
-    	//addSequential(new driveAuto(-.8, 0, 0, 100));
+    	
+    	//REST
+    	//addSequential(new driveAuto(0, 0, 0, 10));
+    	
+    	//BACKWARDS
+    	//addSequential(new driveAuto(0, -.65, 0, 125));
+    	
+    	//REST
+    	//addSequential(new driveAuto(0, 0, 0, 10));
+    	
+    	//FORWARDS
+    	//addSequential(new driveAuto(0, .65, 0, 125));
+    	
+    	
     	
     	// 128in IN 100 itterations
     	
