@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5752.robot.subsystems;
 
 import org.usfirst.frc.team5752.robot.OI;
+import org.usfirst.frc.team5752.robot.Robot;
 import org.usfirst.frc.team5752.robot.RobotMap;
 import org.usfirst.frc.team5752.robot.commands.mecanumDrive;
 
@@ -28,8 +29,25 @@ public class DriveTrain extends Subsystem {
 		// setDefaultCommand(new MySpecialCommand());
 		setDefaultCommand(new mecanumDrive());
 	}
+	
+	
+	public static void driveOverRide(double X_DIRECTION, double Y_DIRECTION, double ROTATION) {
+		
+		//SmartDashboard.putString("DB/String 2", "X:" + Double.toString(X_DIRECTION));
+		//SmartDashboard.putString("DB/String 3", "Y:" + Double.toString(Y_DIRECTION));
+		//SmartDashboard.putString("DB/String 4", "ROTATE:" + Double.toString(ROTATION));
+		//SmartDashboard.putString("DB/String 5", "SPINSLOW: " + Boolean.toString(RobotMap.SPIN_SLOW));
+		
+		myDrive.mecanumDrive_Cartesian(X_DIRECTION, Y_DIRECTION, ROTATION, Robot.ahrs.getAngle());
+	}
+	
+	public static void stop() {
+		myDrive.mecanumDrive_Cartesian(0, 0, 0, 0);
+	}
+	
+	
 
-	public static void drive(double X_DIRECTION, double Y_DIRECTION, double ROTATION, double GYRO_ANGLE) {
+	public static void drive(double X_DIRECTION, double Y_DIRECTION, double ROTATION) {
 
 		double number1 = 1.25;
 		double number2 = 1.176;
@@ -69,12 +87,13 @@ public class DriveTrain extends Subsystem {
 		}
 
 		// if (OI.stick.getRawAxis(3) < .5)
-		SmartDashboard.putString("DB/String 2", "X:" + Double.toString(X_DIRECTION));
-		SmartDashboard.putString("DB/String 3", "Y:" + Double.toString(Y_DIRECTION));
-		SmartDashboard.putString("DB/String 4", "ROTATE:" + Double.toString(ROTATION));
-		SmartDashboard.putString("DB/String 5", "SPINSLOW: " + Boolean.toString(RobotMap.SPIN_SLOW));
-		myDrive.mecanumDrive_Cartesian(X_DIRECTION, Y_DIRECTION, ROTATION, GYRO_ANGLE);
-
+		
+		//SmartDashboard.putString("DB/String 2", "X:" + Double.toString(X_DIRECTION));
+		//SmartDashboard.putString("DB/String 3", "Y:" + Double.toString(Y_DIRECTION));
+		//SmartDashboard.putString("DB/String 4", "ROTATE:" + Double.toString(ROTATION));
+		//SmartDashboard.putString("DB/String 5", "SPINSLOW: " + Boolean.toString(RobotMap.SPIN_SLOW));
+		myDrive.mecanumDrive_Cartesian(X_DIRECTION, Y_DIRECTION, ROTATION, 0);
+		
 	}
 
 	public static void straightDrive(double POWER) {

@@ -51,7 +51,7 @@ public class mecanumDrive extends Command {
 		double ROTATION = OI.stick.getRawAxis(2);
 		
 		
-		DriveTrain.drive(X_DIRECTION, Y_DIRECTION, ROTATION, 0);
+		DriveTrain.drive(X_DIRECTION, Y_DIRECTION, ROTATION);
 
 		// ZERO ROTATION
 		// DriveTrain.drive(OI.Xbox.getLeftXAxis(), OI.Xbox.getLeftYAxis(), 0,

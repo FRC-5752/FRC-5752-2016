@@ -1,7 +1,8 @@
 package org.usfirst.frc.team5752.robot.commands;
 
 import org.usfirst.frc.team5752.robot.Robot;
-import org.usfirst.frc.team5752.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team5752.robot.subsystems.Shooter;
+import org.usfirst.frc.team5752.robot.subsystems.intakeSystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -9,18 +10,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class driveAuto extends Command {
+public class autoShoot extends Command {
 	
-	private double xDirection, yDirection, Rotation, time, timeKeeper = 0;
-	
-    public driveAuto(double xDirection, double yDirection, double Rotation, double time) {
+	private double time = 0, timeKeeper = 300;
+
+    public autoShoot() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
-    	this.xDirection = xDirection;
-    	this.yDirection = yDirection;
-    	this.Rotation = Rotation;
-    	this.time = time;
+    	requires(Robot.intakeSystem);
+    	
+    	
     }
 
     // Called just before this Command runs the first time
@@ -28,14 +28,17 @@ public class driveAuto extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-	protected void execute() {
-		//X + Y must be > .15
-		//ROTATION must be > .2
-    	DriveTrain.drive(xDirection, yDirection, Rotation);
+    protected void execute() {
 		SmartDashboard.putString("DB/String 0", "Time: " + Double.toString(time));
 		SmartDashboard.putString("DB/String 1", "Time keeper: " + Double.toString(timeKeeper));
-		timeKeeper++;
-    	
+		
+		Shooter.spin(1);
+		
+		if (time > 250) {
+			intakeSystem.move(1);
+		}
+		
+		time++;
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -46,6 +49,8 @@ public class driveAuto extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	timeKeeper = 0;
+    	Shooter.stop();
+    	intakeSystem.stop();
     }
 
     // Called when another command which requires one or more of the same
@@ -60,4 +65,5 @@ public class driveAuto extends Command {
     		return false;
     	}
     }
+    
 }

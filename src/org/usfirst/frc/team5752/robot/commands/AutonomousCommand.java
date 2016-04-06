@@ -12,65 +12,67 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class AutonomousCommand extends CommandGroup {
 
-    public AutonomousCommand() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.driveTrain);
-    	requires(Robot.intakeSystem);
-    	
-    	// -.5Y makes it go forward
-    	
-    	//FORWARDS
-    	
-    	/*
-    	addSequential(new driveAuto(0,.65, 0, 125));
-    	*/
-    	
-    	
-    	//ROBOT FACING BACKWARDS GOING LEFT RELATIVE TO LOWBAR
-    	//addSequential(new driveAuto(0, 0, 0, 40));
-    	//addSequential(new driveAuto(.65, 0, .3, 85));
-    	addSequential(new driveAuto(0,.65, 0, 170));
-    	
-    	// -.5X makes it go left
-    	
-    	//REST
-    	//addSequential(new driveAuto(0, 0, 0, 10));
-    	
-    	//BACKWARDS
-    	//addSequential(new driveAuto(0, -.65, 0, 125));
-    	
-    	//REST
-    	//addSequential(new driveAuto(0, 0, 0, 10));
-    	
-    	//FORWARDS
-    	//addSequential(new driveAuto(0, .65, 0, 125));
-    	
-    	
-    	
-    	// 128in IN 100 itterations
-    	
-    }
+	public AutonomousCommand() {
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+		requires(Robot.driveTrain);
+		requires(Robot.intakeSystem);
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    }
+		// -.5Y makes it go forward
+		// addSequential(new driveAuto(X, Y, ROTATION, TIME));
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    }
+		// FORWARDS
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
+		/*
+		 * addSequential(new driveAuto(0,.65, 0, 125));
+		 */
 
-    // Called once after isFinished returns true
-    protected void end() {
-    }
+		// ROBOT FACING BACKWARDS (SHOOTER TOWARDS LOW BAR) GOING LEFT RELATIVE
+		// TO LOWBAR
+		
+		// addSequential(new driveAuto(0, 0, 0, 40));
+		// addSequential(new driveAuto(.65, 0, .3, 85));
+		addSequential(new driveAuto(0, .65, 0, 170));
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+		// -.5X makes it go left
+
+		// REST
+		// addSequential(new driveAuto(0, 0, 0, 10));
+
+		// BACKWARDS
+		// addSequential(new driveAuto(0, -.65, 0, 125));
+
+		// REST
+		// addSequential(new driveAuto(0, 0, 0, 10));
+
+		// FORWARDS
+		// addSequential(new driveAuto(0, .65, 0, 125));
+
+		// 128in IN 100 itterations
+
+	}
+
+	// Called just before this Command runs the first time
+	protected void initialize() {
+	}
+
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+	}
+
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		return false;
+	}
+
+	// Called once after isFinished returns true
+	protected void end() {
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+	}
+	
+	
 }

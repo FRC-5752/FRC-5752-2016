@@ -74,7 +74,7 @@ public class OI {
 		
 		button4.whileHeld(new shoot());
 		
-		button5.whileHeld(new slowShoot());
+		//button5.whileHeld(new slowShoot());
 		
 		button6.whileHeld(new shootReverse());
 		

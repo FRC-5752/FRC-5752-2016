@@ -4,6 +4,7 @@ package org.usfirst.frc.team5752.robot;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -13,6 +14,8 @@ import org.usfirst.frc.team5752.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team5752.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5752.robot.subsystems.Shooter;
 import org.usfirst.frc.team5752.robot.subsystems.intakeSystem;
+
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -28,11 +31,14 @@ import edu.wpi.first.wpilibj.vision.USBCamera;
 public class Robot extends IterativeRobot {
 	
 	//  <> w/ <3 by Bradley Spillert
+	
 
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static final intakeSystem intakeSystem = new intakeSystem();
 	public static final Shooter shooter = new Shooter() ;
 	public static OI oi;
+	
+	public static AHRS ahrs;
 	
 	public static CameraServer server;
 	
@@ -61,10 +67,13 @@ public class Robot extends IterativeRobot {
         //chooser.addDefault("Default Auto", new ExampleCommand());
         //chooser.addObject("My Auto", new MyAutoCommand());
         //SmartDashboard.putData("Volts", driveTrain);
-		SmartDashboard.putString("DB/String 0", "HELLO DAN MILEY");
 		
+		/*
 		CameraServer server = CameraServer.getInstance();
 		server.startAutomaticCapture("cam0");
+		*/
+		
+		ahrs = new AHRS(SPI.Port.kMXP);
 		
     }
 	
