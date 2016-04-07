@@ -38,7 +38,7 @@ public class DriveTrain extends Subsystem {
 		//SmartDashboard.putString("DB/String 4", "ROTATE:" + Double.toString(ROTATION));
 		//SmartDashboard.putString("DB/String 5", "SPINSLOW: " + Boolean.toString(RobotMap.SPIN_SLOW));
 		
-		myDrive.mecanumDrive_Cartesian(X_DIRECTION, Y_DIRECTION, ROTATION, Robot.ahrs.getAngle());
+		myDrive.mecanumDrive_Cartesian(X_DIRECTION, Y_DIRECTION, ROTATION, 0);
 	}
 	
 	public static void stop() {

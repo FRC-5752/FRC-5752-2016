@@ -16,13 +16,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class aiShoot extends Command {
 	
 	private boolean move, move1, move2;
-	private NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport");
 	
 	private double wantedX;
 	private double wantedY;
 	private double wantedWidth;
 	
-	private double time = 300, timeKeeper = 0;
+	private double time = 200, timeKeeper = 0;
 	
     public aiShoot() {
         // Use requires() here to declare subsystem dependencies
@@ -33,8 +32,8 @@ public class aiShoot extends Command {
     	requires(Robot.shooter);
     	//TODO MAKE MOVE TRUE ONE I FIND THE VALUES
     	move = false;
-    	move1 = true;
-    	move2 = true;
+    	move1 = false;
+    	move2 = false;
     	
     	timeKeeper = 0;
     	
@@ -56,17 +55,18 @@ public class aiShoot extends Command {
     @SuppressWarnings("deprecation")
 	protected void execute() {
     	
-    	double centerX = table.getDouble("centerX"),
+    	/*double centerX = table.getDouble("centerX"),
     			centerY = table.getDouble("centerY"),
     		 	width = table.getDouble("width"),
     			area = table.getDouble("area"),
-    			height = table.getDouble("height");
+    			height = table.getDouble("height");*/
+    	//double centerX = table.getDouble("cetnerX");
     	
-    	SmartDashboard.putString("DB/String 2", "centerX:" + Double.toString(centerX));
-		SmartDashboard.putString("DB/String 3", "centerY:" + Double.toString(centerY));
-		SmartDashboard.putString("DB/String 4", "width:" + Double.toString(width));
-		SmartDashboard.putString("DB/String 5", "height: " + Double.toString(height));
-		SmartDashboard.putString("DB/String 6", "area: " + Double.toString(area));
+    	//SmartDashboard.putString("DB/String 2", "centerX:" + Double.toString(centerX));
+		//SmartDashboard.putString("DB/String 3", "centerY:" + Double.toString(centerY));
+		//SmartDashboard.putString("DB/String 4", "width:" + Double.toString(width));
+		//SmartDashboard.putString("DB/String 5", "height: " + Double.toString(height));
+		//SmartDashboard.putString("DB/String 6", "area: " + Double.toString(area));
     	
     	
     	/* (rotate) {
@@ -78,25 +78,36 @@ public class aiShoot extends Command {
 		// addSequential(new driveAuto(X, Y, ROTATION, TIME));
     	
     	// -.5X makes it go left (facing backwards with shooter)
-    	
-    	
+    	/*
+		double x = 0,
+				y = 0,
+				rotate = 0;
+		
     	if(centerX < wantedX - 5 && move) {
     		DriveTrain.driveOverRide(.4, 0, 0);
+    		//x = .4;
     	} else if (centerX > wantedX + 5) {
     		DriveTrain.driveOverRide(-.4, 0, 0);
+    		//x = -.4;
     	} else {
     		DriveTrain.stop();
+    		//x = 0;
     		move1 = false;
     	}
     	
     	if(centerY < wantedY - 5 && move) {
-    		DriveTrain.drive(0, .3, 0);
+    		DriveTrain.driveOverRide(0, .3, 0);
+    		//y = .3;
     	} else if(centerY > wantedY + 5) {
-    		DriveTrain.drive(0, -.3, 0);
+    		DriveTrain.driveOverRide(0, -.3, 0);
+    		//y = -.3;
     	} else {
     		DriveTrain.stop();
+    		//y = 0;
     		move2 = false;
-    	}
+    	}*/
+    	
+    	//DriveTrain.driveOverRide(x, y, rotate);
     	
     	//shoot the ball
     	if (!move1 && !move2) {
@@ -107,7 +118,7 @@ public class aiShoot extends Command {
     		
     		Shooter.spin(1);
     		
-    		if (timeKeeper > 250) {
+    		if (timeKeeper > 150) {
     			intakeSystem.move(1);
     		}
     		

@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
 	public static final Shooter shooter = new Shooter() ;
 	public static OI oi;
 	
-	public static AHRS ahrs;
+	//public static AHRS ahrs;
 	
 	public static CameraServer server;
 	
@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
 		server.startAutomaticCapture("cam0");
 		*/
 		
-		ahrs = new AHRS(SPI.Port.kMXP);
+		//ahrs = new AHRS(SPI.Port.kMXP);
 		
     }
 	
