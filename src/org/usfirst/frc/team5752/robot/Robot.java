@@ -2,6 +2,7 @@
 package org.usfirst.frc.team5752.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SPI;
@@ -38,7 +39,7 @@ public class Robot extends IterativeRobot {
 	public static final Shooter shooter = new Shooter() ;
 	public static OI oi;
 	
-	//public static AHRS ahrs;
+	public static AHRS ahrs;
 	
 	public static CameraServer server;
 	
@@ -73,7 +74,16 @@ public class Robot extends IterativeRobot {
 		server.startAutomaticCapture("cam0");
 		*/
 		
-		//ahrs = new AHRS(SPI.Port.kMXP);
+		try {
+            /* Communicate w/navX MXP via the MXP SPI Bus.                                     */
+            /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
+            /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
+			ahrs = new AHRS(SPI.Port.kMXP);
+	    	Robot.ahrs.zeroYaw();
+			//SmartDashboard.putString("DB/String 6", "test");
+		} catch (RuntimeException ex) {
+			DriverStation.reportError("Yo, ur navX MXP aint workin bro. Error: " + ex.getMessage(), true);
+		}
 		
     }
 	
@@ -140,6 +150,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         //SmartDashboard.putString("DB/String 0", "HELLO ANDREW");
+
       
     }
     

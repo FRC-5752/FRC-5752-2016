@@ -110,7 +110,7 @@ public class aiShoot extends Command {
     	//DriveTrain.driveOverRide(x, y, rotate);
     	
     	//shoot the ball
-    	if (!move1 && !move2) {
+    	/*if (!move1 && !move2) {
     		move = false;
     		//shoot
     		SmartDashboard.putString("DB/String 0", "Time: " + Double.toString(time));
@@ -123,7 +123,7 @@ public class aiShoot extends Command {
     		}
     		
     		timeKeeper++;
-    	}
+    	}*/
     	
     	//ROTATE ROBOT TO GYRO ANGLE 0 or 180
     	

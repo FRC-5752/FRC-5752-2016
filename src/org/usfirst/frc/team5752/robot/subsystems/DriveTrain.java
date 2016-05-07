@@ -5,6 +5,7 @@ import org.usfirst.frc.team5752.robot.Robot;
 import org.usfirst.frc.team5752.robot.RobotMap;
 import org.usfirst.frc.team5752.robot.commands.mecanumDrive;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -37,15 +38,67 @@ public class DriveTrain extends Subsystem {
 		//SmartDashboard.putString("DB/String 3", "Y:" + Double.toString(Y_DIRECTION));
 		//SmartDashboard.putString("DB/String 4", "ROTATE:" + Double.toString(ROTATION));
 		//SmartDashboard.putString("DB/String 5", "SPINSLOW: " + Boolean.toString(RobotMap.SPIN_SLOW));
+		try {
+			
+			myDrive.mecanumDrive_Cartesian(X_DIRECTION, Y_DIRECTION, ROTATION, Robot.ahrs.getAngle());
+			
+		} catch (RuntimeException ex) {
+			DriverStation.reportError("Bro, ur driveOverRide() method aint detecting the NavX-MXP. Error: " + ex.getMessage(), true);
+		}
+	}
+	
+	
+	
+	public static void fieldDrive(double X_DIRECTION, double Y_DIRECTION, double ROTATION) {
 		
-		myDrive.mecanumDrive_Cartesian(X_DIRECTION, Y_DIRECTION, ROTATION, 0);
+
+		double number1 = 1.25;
+		double number2 = 1.176;
+
+		if (Math.abs(ROTATION) < RobotMap.DEADBAND) {
+			ROTATION = 0;
+		} else if (ROTATION > 0) {
+			ROTATION -= RobotMap.DEADBAND;
+			ROTATION *= number1; // * 1.24 to be on the safe side
+		} else if (ROTATION < 0) {
+			ROTATION += RobotMap.DEADBAND;
+			ROTATION *= number1; // * 1.24 to be on the safe side
+		}
+		
+		if (RobotMap.SPIN_SLOW) {
+			ROTATION *= .5;
+		}
+
+		if (Math.abs(X_DIRECTION) < RobotMap.XY_DEADBAND) {
+			X_DIRECTION = 0;
+		} else if (X_DIRECTION > 0) {
+			X_DIRECTION -= RobotMap.XY_DEADBAND;
+			X_DIRECTION *= number2; // * 1.175 to be on the safe side
+		} else if (X_DIRECTION < 0) {
+			X_DIRECTION += RobotMap.XY_DEADBAND;
+			X_DIRECTION *= number2;// * 1.175 to be on the safe side
+		}
+
+		if (Math.abs(Y_DIRECTION) < RobotMap.XY_DEADBAND) {
+			Y_DIRECTION = 0;
+		} else if (Y_DIRECTION > 0) {
+			Y_DIRECTION -= RobotMap.XY_DEADBAND;
+			Y_DIRECTION *= number2;// * 1.175 to be on the safe side
+		} else if (Y_DIRECTION < 0) {
+			Y_DIRECTION += RobotMap.XY_DEADBAND;
+			Y_DIRECTION *= number2; // * 1.175 to be on the safe side
+		}
+		
+		try {
+			
+			myDrive.mecanumDrive_Cartesian(X_DIRECTION, Y_DIRECTION, 0, Robot.ahrs.getAngle());
+			
+		} catch (RuntimeException ex) {
+			DriverStation.reportError("Bro, ur fieldDrive() method aint detecting the NavX-MXP. Error: " + ex.getMessage(), true);
+		}
+		
 	}
-	
-	public static void stop() {
-		myDrive.mecanumDrive_Cartesian(0, 0, 0, 0);
-	}
-	
-	
+
 
 	public static void drive(double X_DIRECTION, double Y_DIRECTION, double ROTATION) {
 
@@ -103,6 +156,13 @@ public class DriveTrain extends Subsystem {
 		backRight.set(-POWER);
 
 	}
+	
+	
+	public static void stop() {
+		myDrive.mecanumDrive_Cartesian(0, 0, 0, 0);
+	}
+	
+	
 
 	/*
 	 * public static void polarDrive(double MAGNITUDE, double DIRECTION, double

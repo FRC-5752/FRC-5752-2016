@@ -9,63 +9,57 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class driveAuto extends Command {
-	
-	private double xDirection, yDirection, Rotation, time, timeKeeper = 0;
-	
-    public driveAuto(double xDirection, double yDirection, double Rotation, double time) {
+public class rotateToAngle extends Command {
+	double angle = 0;
+	boolean done = false;
+	/**
+	 * 
+	 * @param angle angle to rotate to. ex: 90 will rotate robot 90 degrees clockwise
+	 */
+    public rotateToAngle(double angle) { // double angle
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
-    	this.xDirection = xDirection;
-    	this.yDirection = yDirection;
-    	this.Rotation = Rotation;
-    	this.time = time;
+    	this.angle = angle;
+
+    	done = false;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+		SmartDashboard.putString("DB/String 5", Double.toString(Robot.ahrs.getAngle()));
+		SmartDashboard.putString("DB/String 6", Double.toString(Robot.ahrs.getYaw()));
+    	SmartDashboard.putString("DB/String 7", "testrotate22222");
+    	
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
-	protected void execute() {
-		//X + Y must be > .15
-		//ROTATION must be > .2
-		SmartDashboard.putString("DB/String 0", "Time: " + Double.toString(time));
-		SmartDashboard.putString("DB/String 1", "Time keeper: " + Double.toString(timeKeeper));
+    protected void execute() {
 		
-    	DriveTrain.driveOverRide(xDirection, yDirection, Rotation);
-    	
-		timeKeeper++;
+		if (Robot.ahrs.getYaw() < this.angle - .5) {
+			DriveTrain.driveOverRide(0, 0, .2);
+		} else if (Robot.ahrs.getYaw()  > this.angle +.5) {
+			DriveTrain.driveOverRide(0, 0, -.2);
+		}else {
+			DriveTrain.stop();
+			done = true;
+		}
 		
-		
-		/*
-		 * COLLISION DETECTION
-		 */
-	
     	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return done();
+        return done;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	timeKeeper = 0;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    }
-    
-    protected boolean done() {
-    	if (timeKeeper > time) { 
-    		return true;
-    	} else {
-    		return false;
-    	}
     }
 }

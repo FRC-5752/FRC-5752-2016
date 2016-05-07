@@ -56,7 +56,11 @@ public class OI {
 			button4 = new JoystickButton(stick, 4),
 			button5 = new JoystickButton(stick, 5),
 			button6 = new JoystickButton(stick, 6),
-			button11 = new JoystickButton(stick,11),
+			button7 = new JoystickButton(stick, 7),
+			button8 = new JoystickButton(stick, 8),
+			button9 = new JoystickButton(stick, 8),
+			button10 = new JoystickButton(stick, 10),
+			button11 = new JoystickButton(stick, 11),
 			button12 = new JoystickButton(stick, 12);
 	
 	//JOYSTICK 4 = limitswitch bottom
@@ -79,9 +83,7 @@ public class OI {
 		
 		button6.whileHeld(new shootReverse());
 		
-		button11.toggleWhenPressed(new slowToggle());
 		
-		button12.toggleWhenPressed(new slowToggle());
 		
 		//button3.whenPressed(new intakeSlowToggle());
 		
