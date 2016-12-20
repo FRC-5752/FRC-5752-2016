@@ -56,7 +56,7 @@ public class Robot extends IterativeRobot {
 		//SmartDashboard.putData(intakeSystem);
 		
 		//server = CameraServer.getInstance();
-		//server.setQuality(50);
+		//server.setQuality(5);
 		//server.startAutomaticCapture("cam0");
 		
 		autonomousCommand = new AutonomousCommand();
@@ -69,10 +69,10 @@ public class Robot extends IterativeRobot {
         //chooser.addObject("My Auto", new MyAutoCommand());
         //SmartDashboard.putData("Volts", driveTrain);
 		
-		/*
+		
 		CameraServer server = CameraServer.getInstance();
 		server.startAutomaticCapture("cam0");
-		*/
+		
 		
 		try {
             /* Communicate w/navX MXP via the MXP SPI Bus.                                     */
@@ -92,6 +92,7 @@ public class Robot extends IterativeRobot {
      * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.
      */
+	
     public void disabledInit(){
 
     }
@@ -149,7 +150,6 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        //SmartDashboard.putString("DB/String 0", "HELLO ANDREW");
 
       
     }

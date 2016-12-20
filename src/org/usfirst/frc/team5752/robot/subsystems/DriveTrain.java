@@ -53,7 +53,7 @@ public class DriveTrain extends Subsystem {
 		
 
 		double number1 = 1.25;
-		double number2 = 1.176;
+		double number2 = 1.25; // was 1.176 on 11/3/16
 
 		if (Math.abs(ROTATION) < RobotMap.DEADBAND) {
 			ROTATION = 0;
@@ -103,7 +103,7 @@ public class DriveTrain extends Subsystem {
 	public static void drive(double X_DIRECTION, double Y_DIRECTION, double ROTATION) {
 
 		double number1 = 1.25;
-		double number2 = 1.176;
+		double number2 = 1.25; // was previously 1.176 on 11/3/16
 
 		if (Math.abs(ROTATION) < RobotMap.DEADBAND) {
 			ROTATION = 0;
@@ -141,10 +141,14 @@ public class DriveTrain extends Subsystem {
 
 		// if (OI.stick.getRawAxis(3) < .5)
 		
-		//SmartDashboard.putString("DB/String 2", "X:" + Double.toString(X_DIRECTION));
-		//SmartDashboard.putString("DB/String 3", "Y:" + Double.toString(Y_DIRECTION));
-		//SmartDashboard.putString("DB/String 4", "ROTATE:" + Double.toString(ROTATION));
-		//SmartDashboard.putString("DB/String 5", "SPINSLOW: " + Boolean.toString(RobotMap.SPIN_SLOW));
+		SmartDashboard.putString("DB/String 7", "X-V" + Float.toString(Robot.ahrs.getVelocityX()));
+		SmartDashboard.putString("DB/String 8", "Y-V" + Float.toString(Robot.ahrs.getVelocityY()));
+		SmartDashboard.putString("DB/String 9", "Z-V" + Float.toString(Robot.ahrs.getVelocityZ()));
+		
+		SmartDashboard.putString("DB/String 2", "X:" + Double.toString(X_DIRECTION));
+		SmartDashboard.putString("DB/String 3", "Y:" + Double.toString(Y_DIRECTION));
+		SmartDashboard.putString("DB/String 4", "ROTATE:" + Double.toString(ROTATION));
+		SmartDashboard.putString("DB/String 5", "SPINSLOW: " + Boolean.toString(RobotMap.SPIN_SLOW));
 		myDrive.mecanumDrive_Cartesian(X_DIRECTION, Y_DIRECTION, ROTATION, 0);
 		
 	}
